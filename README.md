@@ -2,7 +2,7 @@
 
 Installation guidelines
 This project was done with node version 19.6.0, NOT 12.0.0
-Get the source code from this project and copy it to a folder on your computer. Install the dependencies mentioned below.
+Get the source code from this project and copy it to a folder on your computer.
 Then install the dependencies by running the next script in the root folder terminal:
 
 npm install

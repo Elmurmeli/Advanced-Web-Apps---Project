@@ -27,6 +27,7 @@ function App() {
         <div className="App">
         <ThemeProvider theme={darkTheme}>
           <Header/>
+          {/* Conditional rendering: Present You are logged in text when logged in */}
           <h2>{jwt ? `You are logged in!` : ""}</h2>
             <Routes>
               <Route path='/' element={<><h1>Welcome to the Front page!</h1></>}></Route>

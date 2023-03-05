@@ -14,6 +14,7 @@ const Register = ({user, setUser}) => {
     
     const onSubmit= (e) => {
         e.preventDefault();
+      //Create const newUser that we use in the fetch body
        const newUser = {
             username: e.target.username.value,
             password: e.target.password.value,

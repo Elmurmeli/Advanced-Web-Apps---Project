@@ -121,12 +121,12 @@ const SubmitComment = ({jwt, user}) => {
   return (
     
     <div>
-      
+        {/* Conditional rendering that tells the user to log in to post */}
         {!jwt ? <h3>You should Log in to post and comment </h3>: ""}
         <h3>Here is a list of posts:</h3>
         <Container maxWidth="mx" >
         <Paper elevation={24}>
-
+          {/*Using map to place the posts in the cards */}
           {data.map((item) => (
             <Box key={item._id} component="span" sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)', minWidth: 275 }}>
 
@@ -140,7 +140,7 @@ const SubmitComment = ({jwt, user}) => {
 
               <br></br>
               {item.post}
-
+              {/*Button for opening the comment Modal */}
               <CardActions>
                 <Button key={item._id} onClick={() =>handleOpen(item._id)} size="big" id={item._id}>Comments</Button>
               </CardActions>
@@ -151,8 +151,8 @@ const SubmitComment = ({jwt, user}) => {
             
           ))}
 
-        
-        
+            
+          {/* Modal for the comments and submitting comments*/}
           <Modal
               open={open}
               onClose={handleClose}
@@ -166,6 +166,7 @@ const SubmitComment = ({jwt, user}) => {
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                   Comments:
                 </Typography>
+                {/*Using map to check which one of the posts "Comments" button has been pressed */}
                 {commentData.map((comment) =>(
                   comment.postid === id ? (
                     <Typography color="text.primary" key={comment.comment}>
@@ -174,17 +175,19 @@ const SubmitComment = ({jwt, user}) => {
                     </Typography> 
                     ):""
                 ))}
+                {/*Conditional rendering: Rendering comment text field and submit button only if user is logged in */}
                 {jwt ?<>
                 <TextField  type="comment" name='comment' label="Write your Comment" variant="outlined"/>
 
                 <br></br>
 
-                
+                {/* Button for sending the comment */}
                 <Button onClick={click} variant="contained" endIcon={<SendIcon />} style={{padding:5}} color='success' type="submit" value="submit" id='submitComment'>
                   POST
                 </Button>
                 </> : ""}
                 <br></br>
+                {/* Button for closing the modal */}
                 <Button color='error' onClick={handleClose}>Close Comments</Button>
                 </Box>
               </>
@@ -196,14 +199,17 @@ const SubmitComment = ({jwt, user}) => {
         
           </Paper>
         </Container>
+        {/* Conditional rendering: only rendering the Post text field and submit button if the user is logged in */}
         {jwt ? <>
         <form onSubmit={submit} onChange={handlePost} >
         <Container maxWidth="xs" >
             <Paper elevation={24}>
                 <h1>Post here</h1>
                 <br></br>
+                {/* Text field for the post */}
           <TextField type="text" name='post' id="postInput" label="Write your code snippet" variant="outlined"/>
           <br/>
+          {/*Button for sending the post */}
           <Button variant="contained" endIcon={<SendIcon />} style={{padding:5}} color='success' type="submit" value="submit" id='submit'>
             POST
           </Button>
